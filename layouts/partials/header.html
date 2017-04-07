@@ -11,7 +11,8 @@
         <link href="{{ "post/index.xml" | absURL }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
         <link href="{{ "post/index.xml" | absURL }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
         <link href='//fonts.googleapis.com/css?family=Roboto:400,300,700|Noto+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{{ "css/styles.css" | absURL }}">
+        <link rel="stylesheet" href="{{ "css/styles.css" | absURL }}" media="only screen and (min-width: 960px)">
+        <link rel="stylesheet" href="{{ "css/styles_mobile.css" | absURL }}" media="only screen and (max-width: 960px)">
         <link rel="icon" href="{{ "favicon.ico" | absURL }}">
         <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | absURL }}" />
         <link rel="stylesheet" href="{{ "css/highlightjs/monokai.css" | absURL }}">
@@ -32,6 +33,48 @@
          z-index: -1;
         }
         </style>
+
+        <header class="mobile" >
+          <nav class="nav scroll mobile">
+            {{ $currentNode := . }}
+            {{ range .Site.Menus.main }}
+                {{ if .HasChildren }}
+                    <a href="#" class="nav-item mobile menu" data-id="{{.Identifier}}">{{.Name}}</a>
+                {{ else }}
+                    <a href="{{ .URL }}" class="nav-item mobile menu">{{.Name}}</a>
+                {{ end }}
+            {{ end }}
+          </nav>
+          {{ range .Site.Menus.main }}
+            {{ if .HasChildren }}
+                <div class="submenu scroll mobile" id="{{.Identifier}}">
+                {{ range .Children }}
+                    <a href="{{.URL}}" class="nav-item mobile menu">{{.Name}}</a>
+                {{ end }}
+                </div>
+            {{ end }}
+          {{ end }}
+        </header>
+
+        <nav>
+            <ul class="nav desktop">
+                {{ $currentNode := . }}
+                {{ range .Site.Menus.main }}
+                    {{ if .HasChildren }}
+                        <li class="drop"><a>{{.Name}}</a>
+                        <ul>
+                        {{ range .Children }}
+                            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                        {{ end }}
+                        </ul>
+                    {{ else }}
+                        <li class="drop"><a href="{{ .URL }}">{{.Name}}</a>
+                    {{ end }}
+                    </li>
+                {{ end }}
+            </ul>
+        </nav>
+
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -39,6 +82,12 @@
         <![endif]-->
         <header class="site-header">
           <div class="transparent-layer">
-              <h2>{{ .Site.Params.header_title }}</h2>
+              {{ if eq .URL "/" }}
+                <h2>{{ .Site.Params.header_title }}</h2>
+              {{ end }}
+              {{ if in .URL "tags" }}
+                <h2>{{ .Site.Params.header_title }}</h2>
+                <h3>{{ .Title }}</h3>
+              {{ end }}
           </div>
         </header>

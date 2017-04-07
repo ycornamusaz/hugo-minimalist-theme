@@ -40,3 +40,70 @@ themesDir = "../.."
     instagram = ""
     github    = "digitalcraftsman"
     gplus     = ""
+
+[[menu.main]]
+    name = "Home"
+    weight = -100
+    identifier = "home"
+    url = "/"
+
+[[menu.main]]
+    name = "Tags"
+    weight = -90
+    identifier = "tags"
+    url = "#"
+
+[[menu.main]]
+    name = "Hugo"
+    parent = "tags"
+    weight = -99
+    identifier = "hugo"
+    url = "/tags/hugo/"
+
+[[menu.main]]
+    name = "Jekyll"
+    parent = "tags"
+    weight = -98
+    identifier = "jekyll"
+    url = "/tags/jekyll/"
+
+[[menu.main]]
+    name = "Migration"
+    parent = "tags"
+    weight = -97
+    identifier = "migration"
+    url = "/tags/migration/"
+
+[[menu.main]]
+    name = "Articles"
+    weight = -80
+    identifier = "articles"
+    url = "#"
+
+[[menu.main]]
+    name = "Creating a new theme"
+    parent = "articles"
+    weight = -89
+    identifier = "creating-a-new-theme"
+    url = "/post/creating-a-new-theme/"
+
+[[menu.main]]
+    name = "Go is for lovers"
+    parent = "articles"
+    weight = -88
+    identifier = "go-is-for-lovers"
+    url = "/post/go-is-for-lovers/"
+
+[[menu.main]]
+    name = "Hugo is for lovers"
+    parent = "articles"
+    weight = -87
+    identifier = "hugo-is-for-lovers"
+    url = "/post/hugo-is-for-lovers/"
+
+[[menu.main]]
+    name = "Migrate from jekyll"
+    parent = "articles"
+    weight = -86
+    identifier = "migrate-from-jekyll"
+    url = "/post/migrate-from-jekyll/"
